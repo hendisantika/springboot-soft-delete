@@ -2,6 +2,8 @@ package com.hendisantika.springbootsoftdelete.service;
 
 import com.hendisantika.springbootsoftdelete.entity.Book;
 import com.hendisantika.springbootsoftdelete.repository.BookRepository;
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,15 @@ public class BookService {
 
     public void remove(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public Iterable<Book> findAll(boolean isDeleted) {
+        Session session = entityManager.unwrap(Session.class);
+        Filter filter = session.enableFilter("deletedBookFilter");
+        filter.setParameter("isDeleted", isDeleted);
+        Iterable<Book> books = bookRepository.findAll();
+        session.disableFilter("deletedBookFilter");
+        return books;
     }
 
 }
