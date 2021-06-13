@@ -39,7 +39,7 @@ public class BookController {
     }
 
     @GetMapping
-    public Iterable<Books> findAll(@RequestParam(value = "isDeleted", required = false, defaultValue = "false") boolean isDeleted) {
+    public Iterable<Book> findAll(@RequestParam(value = "isDeleted", required = false, defaultValue = "false") boolean isDeleted) {
         return bookService.findAll(isDeleted);
     }
 }
