@@ -6,3 +6,5 @@
 2. Navigate to the folder: `cd springboot-soft-delete`
 3. Run the application: `mvn clean spring-boot:run`
 4. Open your POSTMAN APP
+
+Video Tutorial: https://www.youtube.com/watch?v=IoL6QzM9K7g
